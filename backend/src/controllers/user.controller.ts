@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { Types } from "mongoose";
 
 import User from "../models/userModel";
 
 import { IUser } from "../types/index";
-import { Types } from "mongoose";
+
+import { handleError } from "../utils/handleError";
 
 const createUserToken = (_id: string | Types.ObjectId) => {
     const authenticatedUserToken = jwt.sign({ _id }, process.env.JWT_TOKEN!, {
@@ -34,8 +36,8 @@ export const createUser = async (req: Request, res: Response) => {
 
         return res.status(201).json({ msg: "User successfully created" });
     } catch (error) {
-        console.error("Error in create user", error);
-        return res.status(500).json({ err: "Internal server error" });
+        handleError(error, res);
+        return;
     }
 };
 
@@ -59,7 +61,7 @@ export const loginUser = async (req: Request, res: Response) => {
             return res.status(400).json({ err: "Invalid credentials" });
         }
     } catch (error) {
-        console.error("Error in login user", error);
-        return res.status(500).json({ err: "Internal server error" });
+        handleError(error, res);
+        return;
     }
 };
