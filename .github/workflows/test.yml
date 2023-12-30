@@ -27,6 +27,9 @@ jobs:
             - name: Install yarn
               run: npm install -g yarn
 
+            - name: Configure yarn
+              run: yarn
+
             - name: Install backend dependencies
               run: cd backend && yarn install
 
