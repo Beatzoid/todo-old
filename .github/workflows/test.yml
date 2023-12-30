@@ -28,7 +28,7 @@ jobs:
               run: npm install -g yarn
 
             - name: Configure yarn
-              run: yarn
+              run: yarn set version stable
 
             - name: Install backend dependencies
               run: cd backend && yarn install
