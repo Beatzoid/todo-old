@@ -9,6 +9,7 @@
         "**/node_modules": true,
         "**/.yarn": true,
         "**/yarn.lock": true,
-        "**/dist": true
+        "**/dist": true,
+        "**/.expo": true
     }
 }
