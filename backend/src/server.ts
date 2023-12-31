@@ -8,6 +8,7 @@ import connectToDatabase from "./db";
 
 import userRoutes from "./routes/user.route";
 import categoryRoutes from "./routes/category.route";
+import taskRoutes from "./routes/task.route";
 
 const app = express();
 
@@ -22,5 +23,6 @@ app.get("/ping", (_: Request, res: Response) => {
 
 app.use("/users", userRoutes);
 app.use("/categories", categoryRoutes);
+app.use("/tasks", taskRoutes);
 
 app.listen(process.env.PORT || 4000, () => console.log("Server running"));
