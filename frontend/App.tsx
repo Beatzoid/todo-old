@@ -1,21 +1,25 @@
+import { StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+
+import { SafeAreaProvider } from "react-native-safe-area-context";
+
 import { ThemeProvider } from "@shopify/restyle";
 
-import Button from "@/components/Button";
+import theme from "@/utils/theme";
 
-import theme, { Text } from "@/utils/theme";
+import Navigation from "@/navigation";
+
+import SafeAreaWrapper from "@/components/shared/safeAreaWrapper";
 
 export default function App() {
     return (
         <ThemeProvider theme={theme}>
-            <View style={styles.container}>
-                <Text variant="textXs">
-                    Open up App.tsx to start working on your app!
-                </Text>
-                <Button />
-                <StatusBar style="auto" />
-            </View>
+            <SafeAreaProvider>
+                <SafeAreaWrapper>
+                    <Navigation />
+                    <StatusBar translucent />
+                </SafeAreaWrapper>
+            </SafeAreaProvider>
         </ThemeProvider>
     );
 }
