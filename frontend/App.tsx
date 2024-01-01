@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { StyleSheet } from "react-native";
 
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -11,7 +11,10 @@ import Navigation from "@/navigation";
 
 import SafeAreaWrapper from "@/components/shared/safeAreaWrapper";
 
+
 export default function App() {
+   
+
     return (
         <ThemeProvider theme={theme}>
             <SafeAreaProvider>
