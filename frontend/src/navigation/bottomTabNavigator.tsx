@@ -10,7 +10,7 @@ import CompletedScreen from "@/screens/completedScreen";
 import TodayScreen from "@/screens/todayScreen";
 import CategoriesScreen from "@/screens/categoriesScreen";
 
-import Icons from "@/components/shared/icons";
+import Icons from "@/components/shared/Icons";
 
 const Tab = createBottomTabNavigator<RootBottomTabParamList>();
 

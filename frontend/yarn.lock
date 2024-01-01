@@ -3399,6 +3399,7 @@ __metadata:
     "@types/react": "npm:~18.2.14"
     babel-plugin-module-resolver: "npm:^5.0.0"
     expo: "npm:~49.0.15"
+    expo-linear-gradient: "npm:12.5.0"
     expo-status-bar: "npm:~1.7.0"
     react: "npm:18.2.0"
     react-native: "npm:0.73.1"
@@ -4678,6 +4679,15 @@ __metadata:
   peerDependencies:
     expo: "*"
   checksum: 11337025b48c335148be4b852b91a72b358b17201eeec95f1fca823af0f0657286965789eb65b3f61c680d746b17fa9326dee0ba3b2ef18e83f1a42b5d90e6ae
+  languageName: node
+  linkType: hard
+
+"expo-linear-gradient@npm:12.5.0":
+  version: 12.5.0
+  resolution: "expo-linear-gradient@npm:12.5.0"
+  peerDependencies:
+    expo: "*"
+  checksum: c1e69e04255aee13ad88c96973c5a82cfb8ea3850629509d106a9a15d3d17c156ce6107e074eab050b6a43c622b8f60c1079aeda277a64d1bfd5af056d48c3a7
   languageName: node
   linkType: hard
 
