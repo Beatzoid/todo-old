@@ -7,7 +7,7 @@ import { IAuthenticatedUser, IUser } from "@/types";
 
 interface IUserGlobalStore {
     user: IAuthenticatedUser | null;
-    updateUser: (user: IUser | null) => void;
+    updateUser: (user: IAuthenticatedUser | null) => void;
 }
 
 const useUserGlobalStore = create<IUserGlobalStore>()(

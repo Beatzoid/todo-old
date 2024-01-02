@@ -1,18 +1,11 @@
 import { NavigationContainer } from "@react-navigation/native";
 
-import AuthStackNavigator from "./authStackNavigator";
-import AppStackNavigator from "./appStackNavigator";
 import useUserGlobalStore from "@/store/useUserGlobalStore";
-import { useEffect } from "react";
+import AppStackNavigator from "./appStackNavigator";
+import AuthStackNavigator from "./authStackNavigator";
 
 const Navigation = () => {
-    const { user, updateUser } = useUserGlobalStore();
-
-    console.log("user", JSON.stringify(user, null, 2));
-
-    useEffect(() => {
-        updateUser(null);
-    }, []);
+    const { user } = useUserGlobalStore();
 
     return (
         <NavigationContainer>

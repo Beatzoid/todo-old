@@ -1,4 +1,6 @@
 import React from "react";
+import { Pressable } from "react-native";
+import { Controller, useForm } from "react-hook-form";
 
 import { useNavigation } from "@react-navigation/native";
 
@@ -8,13 +10,40 @@ import { AuthScreenNavigationType } from "@/navigation/types";
 
 import Input from "@/components/shared/Input";
 import Button from "@/components/shared/Button";
-import { Pressable } from "react-native";
+
+import { IUser } from "@/types";
+import { loginUser } from "@/services/api";
+
+import useUserGlobalStore from "@/store/useUserGlobalStore";
 
 const SignInScreen = () => {
     const navigation = useNavigation<AuthScreenNavigationType<"SignIn">>();
 
+    const { updateUser } = useUserGlobalStore();
+
     const navigateToSignUpScreen = () => {
         navigation.navigate("SignUp");
+    };
+
+    const {
+        control,
+        handleSubmit,
+        formState: { errors }
+    } = useForm<Omit<IUser, "name">>({
+        defaultValues: {
+            email: "",
+            password: ""
+        }
+    });
+
+    const onSubmit = async (data: Omit<IUser, "name">) => {
+        try {
+            const { email, password } = data;
+
+            const user = await loginUser({ email, password });
+
+            updateUser({ email: user.email, name: user.name });
+        } catch (error) {}
     };
 
     return (
@@ -23,9 +52,42 @@ const SignInScreen = () => {
                 Welcome back!
             </Text>
 
-            <Input label="Email" />
+            <Controller
+                control={control}
+                rules={{
+                    required: true
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                    <Input
+                        label="Email"
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+                        placeholder="Email"
+                        error={errors.email}
+                    />
+                )}
+                name="email"
+            />
             <Box mb="6" />
-            <Input label="Password" />
+            <Controller
+                control={control}
+                rules={{
+                    required: true
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                    <Input
+                        label="Password"
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+                        placeholder="Password"
+                        error={errors.password}
+                        secureTextEntry
+                    />
+                )}
+                name="password"
+            />
             <Box mt="5.5" />
 
             <Pressable onPress={navigateToSignUpScreen}>
@@ -36,7 +98,7 @@ const SignInScreen = () => {
 
             <Box mb="5.5" />
 
-            <Button label="Login" uppercase onPress={navigateToSignUpScreen} />
+            <Button label="Login" uppercase onPress={handleSubmit(onSubmit)} />
         </Box>
     );
 };

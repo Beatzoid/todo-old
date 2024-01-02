@@ -2,7 +2,9 @@ import { config } from "dotenv";
 config();
 
 import express, { Request, Response } from "express";
+
 import morgan from "morgan";
+import cors from "cors";
 
 import connectToDatabase from "./db";
 
@@ -12,8 +14,17 @@ import taskRoutes from "./routes/task.route";
 
 const app = express();
 
+const corsOptions = {
+    // origin: "*",
+    // methods: "*",
+    // allowedHeaders: "*",
+    // credentials: true
+};
+
 app.use(morgan("dev"));
 app.use(express.json());
+
+app.use(cors(corsOptions));
 
 connectToDatabase();
 
